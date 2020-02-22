@@ -5,10 +5,10 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
 
 # Default versions
-ENV TELEGRAF_VERSION 1.9.4-1
-ENV INFLUXDB_VERSION 1.7.3
-ENV GRAFANA_VERSION  6.0.0
-ENV CHRONOGRAF_VERSION 1.7.8
+ENV TELEGRAF_VERSION 1.13.3-1
+ENV INFLUXDB_VERSION 1.7.10
+ENV GRAFANA_VERSION  6.6.0
+ENV CHRONOGRAF_VERSION 1.8.0
 
 # Database Defaults
 ENV INFLUXDB_GRAFANA_DB datasource
@@ -25,24 +25,24 @@ COPY system/99fixbadproxy /etc/apt/apt.conf.d/99fixbadproxy
 RUN rm /var/lib/apt/lists/* -vf
 
 # Base dependencies
-RUN apt-get -y update && \
- apt-get -y dist-upgrade && \
- apt-get -y install \
-  apt-utils \
-  ca-certificates \
-  curl \
-  git \
-  htop \
-  gnupg \
-  libfontconfig \
-  mysql-client \
-  mysql-server \
-  nano \
-  net-tools \
-  supervisor \
-  wget && \
- curl -sL https://deb.nodesource.com/setup_11.x | bash - && \
- apt-get install -y nodejs
+RUN apt-get -y update
+RUN apt-get -y upgrade
+RUN apt-get -y install
+RUN apt-get -y apt-utils
+RUN apt-get -y ca-certificates
+RUN apt-get -y curl
+RUN apt-get -y git
+RUN apt-get -y htop
+RUN apt-get -y gnupg
+RUN apt-get -y libfontconfig
+RUN apt-get -y mysql-client
+RUN apt-get -y mysql-server
+RUN apt-get -y nano
+RUN apt-get -y net-tools
+RUN apt-get -y supervisor
+RUN apt-get -y wget
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+RUN apt-get install -y nodejs
 
 # Configure Supervisord and base env
 COPY supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
