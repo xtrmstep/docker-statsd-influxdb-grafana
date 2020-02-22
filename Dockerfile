@@ -41,7 +41,7 @@ RUN apt-get -y update && \
   net-tools \
   supervisor \
   wget && \
- curl -sL https://deb.nodesource.com/setup_11.x | bash - && \
+ curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
  apt-get install -y nodejs
 
 # Configure Supervisord and base env
