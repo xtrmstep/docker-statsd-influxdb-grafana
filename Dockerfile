@@ -40,7 +40,9 @@ RUN apt-get -y update && \
   nano \
   net-tools \
   supervisor \
-  wget && \
+  wget \
+  adduser \
+  libfontconfig1 && \
  curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
  apt-get install -y nodejs
 
@@ -79,7 +81,6 @@ RUN wget https://dl.influxdata.com/chronograf/releases/chronograf_${CHRONOGRAF_V
   dpkg -i chronograf_${CHRONOGRAF_VERSION}_amd64.deb
 
 # Install Grafana
-RUN apt-get install -y adduser libfontconfig1
 RUN wget https://dl.grafana.com/oss/release/grafana_${GRAFANA_VERSION}_amd64.deb && \
 	dpkg -i grafana_${GRAFANA_VERSION}_amd64.deb && rm grafana_${GRAFANA_VERSION}_amd64.deb
 
